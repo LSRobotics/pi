@@ -5,7 +5,7 @@ import java.net.*;
 import java.util.concurrent.*;
 
 //backlog shall be 8192
-public class Server extends Thread {
+public class Server extends Thread implements Runnable{
 	
 	private ServerSocket serverSocket;
 	private int backlog = 8192;
@@ -13,11 +13,35 @@ public class Server extends Thread {
 	public int port;
 	public boolean indicator;
 	public boolean appIndicator;
-	public String statusListener;
+	private String statusListener;
 	public byte[] handoff;
 	public byte[] handin;
-	public void runServer(int i, byte[] data) {
+	public Thread t = new Thread(this, "pi Server");
+	public boolean suspendFlag = false;// the flag indicates whether thread need to suspended or not.
+	
+	
+	/**
+	 * 
+	 * @param instruction
+	 * 	0: start the server;
+	 *  1: stop the server;
+	 * @param data
+	 */
+	public void runServer(int instruction, byte[] data) {
 		//TODO add something?
+		if (instruction == 0){
+			try {
+				this.startServer();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			t.start();
+		}
+		if (instruction == 1)
+			this.suspendServer();
+		if (instruction == 2)
+			this.resumeServer();
 	}
 		
 	private void startServer() throws IOException {
@@ -47,5 +71,30 @@ public class Server extends Thread {
 			}
 		}
 	}
+	
+	public void run(){
+		try{
+			while (true){
+				//Server
+				
+			
+				//suspend control
+				synchronized(this) {
+		            while(suspendFlag) {
+						wait();
+		            }
+		        }
+			}
+		}catch (InterruptedException e){
+			e.printStackTrace();
+		}
+	}
 
+	 private void suspendServer() {
+         suspendFlag = true;
+     }
+     private synchronized void resumeServer() {
+         suspendFlag = false;
+         notify();
+     }
 }
