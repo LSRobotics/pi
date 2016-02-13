@@ -2,7 +2,7 @@
 
 To use these, copy them to <code>/usr/bin</code>, and grant them permissions using <code>chmod u+rx *</code>.
 
-###sexygrip
+###sexy-grip
 
 Usage: <code>sexy-grip: Usage: sexy-grip (start|stop|restart)</code>
 
