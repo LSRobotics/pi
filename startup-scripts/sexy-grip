@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#sexy-grip
+
+#written by Alex Fang @team5181
+#This shall be put in /usr/bin
+#Shall also be set to chmod u+rx
+
+if [ $(id -u) != "0" ]; then
+    echo  "The current user is not sexy enough to run this script."
+    exit 1
+fi
+
+touch /var/log/sexygrip.log
+
+if [ "$*" = "start" ]; then
+	echo "Starting GRIP..."
+	env LD_LIBRARY_PATH=/opt/ext1/grip:LD_LIBRARY_PATH java -jar /opt/ext1/grip/grip.jar /opt/ext1/grip/project.grip & > /var/log/sexygrip.log
+	echo "Finished."
+elif [ "$*" = "stop" ]; then
+	echo "Stopping GRIP..."
+	killall java > /var/log/sexygrip.log
+	echo "Finished."
+elif [ "$*" = "restart" ]; then
+	echo "Restarting GRIP..."
+	killall java > /var/log/sexygrip.log
+	echo "Starting..."
+	env LD_LIBRARY_PATH=/opt/ext1/grip:LD_LIBRARY_PATH java -jar /opt/ext1/grip/grip.jar /opt/ext1/grip/project.grip & > /var/log/sexygrip.log
+	echo "Finished."
+else
+	echo "sexy-grip: Usage: sexy-grip <start|stop|restart>"
+fi
+

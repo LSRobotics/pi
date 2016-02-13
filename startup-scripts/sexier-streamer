@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#sexier-streamer
+
+#written by Alex Fang @team5181
+#This shall be put in /usr/bin
+#Shall also be set to chmod u+rx
+
+if [ $(id -u) != "0" ]; then
+    echo  "The current user is not even sexy to run this script. Always remember: A sexy attitude is important. "
+    exit 1
+fi
+
+touch /var/log/sexystreamer.log
+port=1180
+res=640x480
+fps=15
+
+sexystart () {
+	echo 'Starting mjpeg-streamer...'
+	echo "3. Port >Default:" $port ; read port
+	echo
+	echo "2. Resolution >Default:" $res; read res
+	echo
+	echo "1. FPS(Default >Default:" $fps; read fps
+	echo
+
+	env LD_LIBRARY_PATH=/usr/local/lib:LD_LIBRARY_PATH mjpg_streamer -o "output_http.so -w /opt/ext1/mjpg-streamer/mjpg-streamer-experimental/www -p $port" -i "input_uvc.so -f $fps -r $res -y -n" & > /var/log/sexystreamer.log
+
+	echo "Finished."
+}
+
+if [ "$*" = "start" ]; then
+	sexystart
+elif [ "$*" = "stop" ]; then
+	echo "Stopping GRIP..."
+	killall mjpg_streamer > /var/log/sexystreamer.log
+	echo "Finished."
+elif [ "$*" = "restart" ]; then
+	echo "Restarting GRIP..."
+	killall java > /var/log/sexygrip.log
+	echo "Starting..."
+	sexystart
+	echo "Finished."
+else
+	echo "sexy-streamer: A streamer that is even more sexier than sexy-grip. Usage: sexy-streamer <start|stop|restart>"
+fi
+
