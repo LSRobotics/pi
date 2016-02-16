@@ -1,6 +1,7 @@
 package server;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.imageio.ImageIO;
 
@@ -18,7 +19,7 @@ public class PiServer {
 	public static void main(String[] args){
 		Server server = new Server();
 		server.runServer(Server.Instruction.START);
-		BufferedImage img = ImageIO.read(new File(pathToImages));
+		
 	}
 	
 	

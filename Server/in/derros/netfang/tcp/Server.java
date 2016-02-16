@@ -62,12 +62,10 @@ public class Server extends Thread {
 				DataOutputStream dout = new DataOutputStream(out);
 				dout.write(handin);
 			
-				//suspend control
-				synchronized(this) {
-		            while(suspended) {
-						wait();
-		            }
-		        }
+				//suspend control	
+	            while(suspended) {
+					wait();
+	            }
 			}
 			
 			server.close();
