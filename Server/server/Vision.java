@@ -11,6 +11,9 @@ import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
 public class Vision {
+	
+	static double[] RGBUpper = {255, 255, 255}; //In BGR Order
+	static double[] RGBLower = {156, 137, 138}; //In BGR Order
 
 	public double[] getBoulderCoord(Mat img) {
 		Mat rgbFiltered = RGBThresh(img, new Scalar(RGBLower), new Scalar(RGBUpper));

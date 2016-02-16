@@ -11,7 +11,7 @@ import in.derros.netfang.tcp.Server;
 public class PiServer {
 
 	public static void main(String[] args){
-		
+		Server server = new Server();
 	}
 	
 	

@@ -76,8 +76,6 @@ public class Server extends Thread implements Runnable{
 		try{
 			while (true){
 				//Server
-				
-			
 				//suspend control
 				synchronized(this) {
 		            while(suspendFlag) {
