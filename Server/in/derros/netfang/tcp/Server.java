@@ -9,13 +9,13 @@ public class Server extends Thread {
 	
 	private ServerSocket serverSocket;
 	private int backlog = 8192;
-	public InetAddress ip;
-	public int port;
+	private InetAddress ip;
+	private int port;
 	private boolean appIndicator;
-	public String statusListener;
-	public byte[] handoff;
-	public byte[] handin;
-	public boolean suspended = false;// the flag indicates whether thread is suspended or not.
+	private String statusListener;
+	private byte[] handout;
+	private byte[] handin;
+	private boolean suspended = false;// the flag indicates whether thread is suspended or not.
 	public enum Instruction {
 		START,
 		SUSPEND,
@@ -84,14 +84,25 @@ public class Server extends Thread {
 	 private void suspendServer() {
          suspended = true;
      }
+	 
      private void resumeServer() {
          suspended = false;
          notify();
      }
+     
      public void startReading() {
     	 appIndicator = true;
      }
+     
      public void stopReading() {
     	 appIndicator = false;
+     }
+     
+     public void handIn(byte[] data) {
+    	 handin = data;
+     }
+     
+     public byte[] handout() {
+    	 return handout;
      }
 }
