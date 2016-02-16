@@ -1,3 +1,5 @@
+package server;
+
 import in.derros.netfang.tcp.Server;
 
 /**
@@ -6,12 +8,11 @@ import in.derros.netfang.tcp.Server;
  * @author Team 5181
  *
  */
-public class main {
+public class PiServer {
 
 	public static void main(String[] args){
-		Server server = new Server();
-		server.runServer(0, null);
 		
 	}
+	
 	
 }
