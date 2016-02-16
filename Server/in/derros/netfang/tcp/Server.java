@@ -16,25 +16,29 @@ public class Server extends Thread {
 	public byte[] handoff;
 	public byte[] handin;
 	public boolean suspended = false;// the flag indicates whether thread is suspended or not.
-
+	public enum Instruction {
+		START,
+		SUSPEND,
+		RESUME
+	}
 	/**
 	 * 
 	 * @param instruction
 	 * 	0: start the server;
 	 *  1: stop the server;
 	 */
-	public void runServer(int instruction) {
+	public void runServer(Instruction i) {
 		appIndicator = true;
 		
-		if (instruction == 0){
+		if (i == Instruction.START){
 			this.start();
 		}
-		if (instruction == 1) {
+		if (i == Instruction.SUSPEND) {
 			if(!suspended) {
 				this.suspendServer();
 			}
 		}
-		if (instruction == 2) {
+		if (i == Instruction.RESUME) {
 			if(suspended) {
 				this.resumeServer();
 			}
