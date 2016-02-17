@@ -21,12 +21,7 @@ public class Server extends Thread {
 		SUSPEND,
 		RESUME
 	}
-	/**
-	 * 
-	 * @param instruction
-	 * 	0: start the server;
-	 *  1: stop the server;
-	 */
+	
 	public void runServer(Instruction i) {
 		appIndicator = true;
 		
@@ -57,7 +52,7 @@ public class Server extends Thread {
 			while (appIndicator){
 				//Server
 				DataInputStream dataIn = new DataInputStream(server.getInputStream());
-				dataIn.read(handoff);
+				dataIn.read(handout);
 				OutputStream out = server.getOutputStream();
 				DataOutputStream dout = new DataOutputStream(out);
 				dout.write(handin);
