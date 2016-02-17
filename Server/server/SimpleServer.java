@@ -35,4 +35,7 @@ public class SimpleServer extends Thread {
 		}
 		
 	}
+	public void setCenter() {
+		//TODO access and interpret OpenCV data and set the centerX and Y variables
+	}
 }
