@@ -1,5 +1,6 @@
 package server;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import org.opencv.core.Core;
@@ -12,11 +13,18 @@ import org.opencv.imgproc.Imgproc;
 
 public class Vision {
 	
-	static double[] RGBUpper = {255, 255, 255}; //In BGR Order
-	static double[] RGBLower = {156, 137, 138}; //In BGR Order
-
-	public double[] getBoulderCoord(Mat img) {
-		Mat rgbFiltered = RGBThresh(img, new Scalar(RGBLower), new Scalar(RGBUpper));
+	static double[] BGRUpper = {255, 255, 255}; //In BGR Order
+	static double[] BGRLower = {156, 137, 138}; //In BGR Order
+	
+	public Vision() {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
+	}
+	
+	public double[] getBoulderCoord(BufferedImage img) {
+		byte[] pixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+		Mat image_final= new Mat(img.getWidth(), img.getHeight(), CvType.CV_8UC3);
+		image_final.put(0, 0, pixels);
+		Mat rgbFiltered = RGBThresh(img, new Scalar(BGRLower), new Scalar(BGRUpper));
 		Mat eroded = new Mat();
 		Imgproc.erode(rgbFiltered, eroded, new Mat(), new Point(-1, -1), 2);
 		ArrayList<MatOfPoint> contours = findContours(eroded);
@@ -25,7 +33,7 @@ public class Vision {
 		return new double[] {getCenterX(boundingBox), getCenterY(boundingBox)};
 	}
 	
-	private static ArrayList<MatOfPoint> findContours(Mat src) {
+	private ArrayList<MatOfPoint> findContours(Mat src) {
 		Mat tmp = new Mat();
 		src.copyTo(tmp);
 		ArrayList<MatOfPoint> contours = new ArrayList<MatOfPoint>();
@@ -33,7 +41,7 @@ public class Vision {
 		return contours;
 	}
 	
-	private static MatOfPoint findBiggestContour(ArrayList<MatOfPoint> contours) {
+	private MatOfPoint findBiggestContour(ArrayList<MatOfPoint> contours) {
 		int maxAreaIndex = 0;
 		double maxArea = 0;
 		for (int i = 0; i < contours.size(); i++) {
@@ -46,15 +54,15 @@ public class Vision {
 		return contours.get(maxAreaIndex);
 	}
 	
-	private static int getCenterY(Rect r) {
+	private int getCenterY(Rect r) {
 		return r.y + (r.height / 2);
 	}
 	
-	private static int getCenterX(Rect r) {
+	private int getCenterX(Rect r) {
 		return r.x + (r.width / 2);
 	}
 	
-	private static Mat RGBThresh(Mat src, Scalar lowerb, Scalar upperb) {
+	private Mat RGBThresh(Mat src, Scalar lowerb, Scalar upperb) {
 		Mat dst = new Mat();
 		Core.inRange(src, lowerb, upperb, dst);
 		return dst;
