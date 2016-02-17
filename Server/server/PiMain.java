@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 public class PiMain {
 	
 	static String pathToImages = "/var/www/phooolishstream/";
+	
 	public static void main(String[] args){
 		Vision vision = new Vision();
 		try {
