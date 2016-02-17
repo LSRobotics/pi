@@ -25,7 +25,7 @@ public class SimpleServer extends Thread {
 			Socket server = serverSocket.accept();
 			DataOutputStream dOut = new DataOutputStream(server.getOutputStream());
 			while (true) {
-				byte[] packet = new byte[128]; //length of two doubles
+				byte[] packet = new byte[8]; //length of two doubles
 				ByteBuffer buffer = ByteBuffer.wrap(packet);
 				buffer.putDouble(0, currentCenterX);
 				buffer.putDouble(1, currentCenterY);
