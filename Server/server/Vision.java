@@ -13,8 +13,8 @@ import org.opencv.imgproc.Imgproc;
 
 public class Vision {
 	
-	static double[] RGBUpper = {255, 255, 255}; //In BGR Order
-	static double[] RGBLower = {156, 137, 138}; //In BGR Order
+	static double[] BGRUpper = {255, 255, 255}; //In BGR Order
+	static double[] BGRLower = {156, 137, 138}; //In BGR Order
 	
 	public Vision() {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -24,7 +24,7 @@ public class Vision {
 		byte[] pixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
 		Mat image_final= new Mat(img.getWidth(), img.getHeight(), CvType.CV_8UC3);
 		image_final.put(0, 0, pixels);
-		Mat rgbFiltered = RGBThresh(img, new Scalar(RGBLower), new Scalar(RGBUpper));
+		Mat rgbFiltered = RGBThresh(img, new Scalar(BGRLower), new Scalar(BGRUpper));
 		Mat eroded = new Mat();
 		Imgproc.erode(rgbFiltered, eroded, new Mat(), new Point(-1, -1), 2);
 		ArrayList<MatOfPoint> contours = findContours(eroded);
