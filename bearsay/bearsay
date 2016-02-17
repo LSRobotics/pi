@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#Author Alex Fang
+#This shall be placed in /usr/bin with the correct permission,
+#along with randombear.ascii
+
+if [ "$1" = "normally" ]; then
+  echo "$2"
+  echo
+  echo "........."
+  echo
+  cat randombear.ascii
+elif [ "$1" = "upsidedown" ]; then
+  tac randombear.ascii
+  echo
+  echo "............."
+  echo
+  echo "$2"
+else
+  echo "Usage: bearsay {normally | upsidedown} <text>"
+fi
