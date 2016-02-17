@@ -8,8 +8,6 @@ import java.nio.ByteBuffer;
 
 import javax.imageio.ImageIO;
 
-import in.derros.netfang.tcp.Server;
-
 /**
  * Main.java
  * starting file for pi server
@@ -17,7 +15,6 @@ import in.derros.netfang.tcp.Server;
  *
  */
 public class PiMain {
-	
 	
 	static String pathToImages = "/var/www/phooolishstream/";
 	public static void main(String[] args){
