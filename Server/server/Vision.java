@@ -1,6 +1,7 @@
 package server;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.util.ArrayList;
 
 import org.opencv.core.Core;
@@ -21,7 +22,7 @@ public class Vision {
 	}
 	
 	public double[] getBoulderCoord(BufferedImage img) {
-		byte[] pixels = ((DataBufferByte) image.getRaster().getDataBuffer()).getData();
+		byte[] pixels = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
 		Mat image_final= new Mat(img.getWidth(), img.getHeight(), CvType.CV_8UC3);
 		image_final.put(0, 0, pixels);
 		Mat rgbFiltered = RGBThresh(img, new Scalar(BGRLower), new Scalar(BGRUpper));
