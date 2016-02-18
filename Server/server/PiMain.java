@@ -16,14 +16,14 @@ import javax.imageio.ImageIO;
  */
 public class PiMain {
 	
-	static String pathToImages = "/var/www/phooolishstream/";
+	static String pathToImages = "/var/www/phooolishstream/default.jpg";
 	
 	public static void main(String[] args){
 		Vision vision = new Vision();
 		try {
 			SimpleServer server = new SimpleServer();
 			while (true) {
-				BufferedImage img = ImageIO.read(new File(pathToImages + "*"));
+				BufferedImage img = ImageIO.read(new File(pathToImages));
 				double[] boulderCord = vision.getBoulderCoord(img);
 				server.currentCenterX = boulderCord[0];
 				server.currentCenterY = boulderCord[1];
