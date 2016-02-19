@@ -11,7 +11,7 @@ public class SimpleServer extends Thread {
 	public volatile double currentCenterX;
 	public volatile double currentCenterY;
 	private ServerSocket serverSocket;
-	private int port;
+	private int port = 5805;
 	
 	public SimpleServer() throws IOException {
 		serverSocket = new ServerSocket(port);
