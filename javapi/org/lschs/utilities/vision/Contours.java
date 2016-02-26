@@ -1,6 +1,18 @@
 package org.lschs.utilities.vision;
 
-//TODO import stuffs
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.util.ArrayList;
+
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+
 public class Contours {
 	private ArrayList<MatOfPoint> findContours(Mat src) {
 		Mat tmp = new Mat();
