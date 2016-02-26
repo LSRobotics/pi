@@ -1,4 +1,4 @@
-package server;
+package org.lschs.utilities.vision;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
