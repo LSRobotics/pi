@@ -1,4 +1,4 @@
-package org.lschs.utilities;
+package org.lschs.utilities.net;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
