@@ -13,7 +13,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-public class Boulder {
+public class LinearAlg {
 	public double[] getBoulderCoord(BufferedImage img) {
 		byte[] pixels = ((DataBufferByte) img.getRaster().getDataBuffer()).getData();
 		Mat image_final= new Mat(img.getWidth(), img.getHeight(), CvType.CV_8UC3);
