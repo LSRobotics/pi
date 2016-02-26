@@ -29,4 +29,12 @@ public class LinearAlg {
 		Rect boundingBox = Imgproc.boundingRect(biggestContour);
 		return new double[] {getCenterX(boundingBox), getCenterY(boundingBox)};
 	}
+	
+	private int getCenterY(Rect r) {
+		return r.y + (r.height / 2);
+	}
+	
+	private int getCenterX(Rect r) {
+		return r.x + (r.width / 2);
+	}
 }
