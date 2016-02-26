@@ -13,7 +13,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-public class Rgb {
+public class Rgb extends Vision {
 
 	public Mat RGBThresh(Mat src, Scalar lowerb, Scalar upperb) {
 		Mat dst = new Mat();
