@@ -13,7 +13,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-public class Contours {
+public class Contours extends Vision {
 	private ArrayList<MatOfPoint> findContours(Mat src) {
 		Mat tmp = new Mat();
 		src.copyTo(tmp);
