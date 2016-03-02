@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#Author Alex Fang
+#This shall be placed in /usr/bin with the correct permission,
+#along with randombear.ascii
+
+bs_validate () {
+	if [ -z "$1"]; then
+		validating=1
+	else
+		validating=0
+	fi
+}
+
+bearsay_func () {
+	if [ "$1" = "normally" ]; then
+		bs_validate $1;
+  		echo "$2"
+  		echo
+  		echo "........."
+  		echo
+		if [ validating -eq 1 ]; then
+			cat $1
+		else
+  			cat randombear.ascii
+		fi
+
+	elif [ "$1" = "upsidedown" ]; then
+		bs_validate $1
+		if [ validating -eq 1 ]; then
+			tac $1
+		else
+  			tac randombear.ascii
+		fi
+ 		echo
+  		echo "............."
+  		echo
+  		echo "$2"
+	fi
+}
+
+
+if [ "$2" = "--custom-files" ]; then
+  echo "$4"
+  echo
+  echo "........."
+  echo
+  bearsay_func $3
+
+elif[ -z "$2" ]; then
+  bearsay_func
+
+else
+  echo "Usage: bearsay {normally|upsidedown} <--custom-files> <filepath> <something to say>"
+
+fi
+
