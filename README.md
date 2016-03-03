@@ -21,6 +21,10 @@ A Java asynchronous performance-based TCP server for transmitting data.
 
 We are having beary fun. We are making beary pun.
 
+##javapi/
+
+Contains refactored vision codes for future developement. Highly volatile and not production-ready.
+
 ##License
 
 The MIT License:
