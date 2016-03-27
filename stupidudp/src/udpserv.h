@@ -4,7 +4,7 @@
 #include <sys/socket.h>
 
 #define PORT 1153
-#define BUFSIZE
+#define BUFSIZE 256
 
 struct sockaddr_in myaddr;      /* our address */
 struct sockaddr_in remaddr;     /* remote address */
@@ -12,7 +12,7 @@ socklen_t addrlen = sizeof(remaddr);            /* length of addresses */
 int recvlen;                    /* # bytes received */
 int fd;                         /* our socket */
 unsigned char buf[BUFSIZE];     /* receive buffer */
-bool controller; /*controller*/
+bool controller= true; /*controller*/
 
 void set_bin_addr() {
   memset((char *)&myaddr, 0, sizeof(myaddr));
