@@ -1,3 +1,5 @@
 ##All softwares available @
 
-https://dl.securesocketlayer.org/software_share
+https://dl.securesocketlayer.org/software-share
+
+upon preagreement of site eula.
